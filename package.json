@@ -1,0 +1,11 @@
+{
+  "name": "smart-resource-allocation",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev:api": "cd api && npm run dev",
+    "dev:web": "cd web && npm run dev",
+    "seed": "cd api && npm run seed",
+    "build": "cd web && npm run build"
+  }
+}

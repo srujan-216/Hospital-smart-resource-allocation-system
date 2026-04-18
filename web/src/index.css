@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { height: 100%; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    background: #f7f8fb;
+    color: #0f172a;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+  :focus-visible { outline: 2px solid #0d9488; outline-offset: 2px; border-radius: 4px; }
+}
+
+@layer components {
+  .card { @apply bg-surface border border-border rounded-xl shadow-card p-4; }
+  .card-p { @apply card; }
+  .card-p-lg { @apply bg-surface border border-border rounded-xl shadow-card p-6; }
+  .card-flush { @apply bg-surface border border-border rounded-xl shadow-card; }
+
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-primary text-white hover:bg-primaryDark; }
+  .btn-primary-lg { @apply btn bg-primary text-white hover:bg-primaryDark px-5 py-2.5 text-[15px]; }
+  .btn-accent { @apply btn bg-accent text-white hover:brightness-110; }
+  .btn-accent-lg { @apply btn bg-accent text-white hover:brightness-110 px-5 py-2.5 text-[15px]; }
+  .btn-outline { @apply btn bg-surface text-ink border border-border hover:border-primary hover:bg-primaryLight; }
+  .btn-ghost { @apply btn text-muted hover:text-ink hover:bg-surface2; }
+  .btn-danger { @apply btn bg-danger text-white hover:brightness-110; }
+
+  .input { @apply w-full bg-surface border border-border rounded-md px-3 py-2 text-sm outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent/30 placeholder:text-muted; }
+  .input-lg { @apply input py-2.5 text-[15px]; }
+
+  .label { @apply text-[11px] uppercase tracking-[0.08em] text-muted font-semibold; }
+  .kbd { @apply font-mono text-[11px] bg-surface2 border border-border rounded px-1.5 py-0.5 text-inkMuted; }
+
+  .chip { @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium; }
+  .chip-neutral { @apply chip bg-surface2 border-border text-inkMuted; }
+  .chip-success { @apply chip bg-successLight border-success/30 text-success; }
+  .chip-warn    { @apply chip bg-warnLight border-warn/30 text-warn; }
+  .chip-danger  { @apply chip bg-dangerLight border-danger/30 text-danger; }
+  .chip-info    { @apply chip bg-infoLight border-info/30 text-info; }
+  .chip-primary { @apply chip bg-primaryLight border-primary/20 text-primary; }
+  .chip-brand   { @apply chip bg-accentLight border-accent/30 text-accent; }
+  .chip-accent  { @apply chip bg-accentLight border-accent/30 text-accent; }
+
+  .card-glow { @apply card p-4 shadow-pop; }
+
+  .stat-num { @apply text-3xl font-bold tabular-nums tracking-tight leading-none; }
+  .stat-label { @apply text-[11px] uppercase tracking-wider text-muted mt-1.5 font-semibold; }
+
+  /* Priority badge (the big number on each patient card) */
+  .priority-badge {
+    @apply rounded-md flex flex-col items-center justify-center w-[60px] h-[60px] font-bold tabular-nums;
+  }
+  .priority-critical { @apply bg-danger text-white; }
+  .priority-urgent   { @apply bg-warn text-white; }
+  .priority-medium   { @apply bg-info text-white; }
+  .priority-routine  { @apply bg-surface2 text-inkMuted border border-border; }
+
+  /* Bed tiles */
+  .bed-tile {
+    @apply rounded-md border p-2.5 text-left transition-all;
+    @apply hover:-translate-y-0.5 hover:shadow-pop;
+  }
+  .bed-free { @apply bg-successLight border-success/30; }
+  .bed-occupied { @apply bg-surface2 border-border; }
+  .bed-flash { animation: bedFlash 900ms ease; }
+}
+
+@keyframes bedFlash {
+  0%   { background-color: #ccfbf1; box-shadow: 0 0 0 2px #0d9488; }
+  100% { background-color: transparent; box-shadow: none; }
+}
+
+@keyframes flashRing {
+  0%   { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.9); transform: scale(1); }
+  40%  { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); transform: scale(1.07); }
+  100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0); transform: scale(1); }
+}
+.flash-ring { animation: flashRing 1100ms ease-out 2; z-index: 2; }
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.toast-in { animation: toastIn 220ms ease-out; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide-up { animation: slideUp 300ms ease both; }
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.2); }
+}
+.pulse-dot { animation: dotPulse 1.4s ease-in-out infinite; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-track { background: transparent; }

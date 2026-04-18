@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+build/
+.vite/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Runtime state
+api/data/runtime.json
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.log
+coverage/
+
+# Claude Code local settings (do not commit user-level state)
+.claude/settings.local.json
+.claude/logs/
+.claude/cache/
+
+# Planning scratch
+plan/
