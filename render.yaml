@@ -1,0 +1,30 @@
+# Render Blueprint — deploys the API as a free web service.
+# Import this repo in Render (New → Blueprint) and Render will pick this up.
+services:
+  - type: web
+    name: smart-beds-api
+    runtime: node
+    rootDir: api
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false              # set manually in the dashboard
+      # Set WEB_ORIGIN to your Vercel URL after first deploy, e.g.
+      #   https://smart-beds.vercel.app
+      - key: WEB_ORIGIN
+        sync: false
+      # Optional — leave blank to use in-memory storage
+      - key: MONGODB_URI
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+    healthCheckPath: /api/health

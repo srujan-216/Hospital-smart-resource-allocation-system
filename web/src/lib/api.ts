@@ -1,6 +1,13 @@
 import axios from "axios";
 
-const client = axios.create({ baseURL: "/api", timeout: 15000 });
+// In dev, Vite proxies /api → localhost:4000 (or whatever API_URL env is set to).
+// In production, point Vercel at the deployed API via VITE_API_URL, e.g.
+//   VITE_API_URL=https://smart-beds-api.onrender.com
+const API_BASE = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL.replace(/\/$/, "")}/api`
+  : "/api";
+
+const client = axios.create({ baseURL: API_BASE, timeout: 15000 });
 
 client.interceptors.request.use((cfg) => {
   const token = localStorage.getItem("admin_token");

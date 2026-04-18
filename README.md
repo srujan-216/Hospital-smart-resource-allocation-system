@@ -364,7 +364,8 @@ See [`docs/setup.md`](docs/setup.md) for details.
 | [`docs/api.md`](docs/api.md) | Full REST endpoint reference with shapes |
 | [`docs/scoring.md`](docs/scoring.md) | Priority formula with four worked examples |
 | [`docs/demo-guide.md`](docs/demo-guide.md) | 3-minute jury demo script with fallback paths |
-| [`docs/setup.md`](docs/setup.md) | Install · configure · deploy |
+| [`docs/setup.md`](docs/setup.md) | Local install · configure |
+| [`docs/deployment.md`](docs/deployment.md) | Deploy to Vercel + Render in 20 minutes |
 
 ---
 

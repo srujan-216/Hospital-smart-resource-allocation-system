@@ -17,7 +17,17 @@ import { bedsRouter } from "./routes/beds.js";
 import { labsRouter } from "./routes/labs.js";
 
 const app = express();
-app.use(cors({ origin: process.env.WEB_ORIGIN || true }));
+
+// Accept comma-separated origins in WEB_ORIGIN (e.g. prod + preview deployments).
+// Fall back to permissive if unset (dev convenience); set this env in prod.
+const allowedOrigins = (process.env.WEB_ORIGIN || "")
+  .split(",")
+  .map(s => s.trim())
+  .filter(Boolean);
+app.use(cors({
+  origin: allowedOrigins.length ? allowedOrigins : true,
+  credentials: true,
+}));
 app.use(express.json({ limit: "1mb" }));
 
 app.use((req, _res, next) => {
